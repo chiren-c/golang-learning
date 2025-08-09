@@ -15,8 +15,10 @@ func sum(seq int, ch chan int) {
 	fmt.Printf("子协程%d运算结果:%d\n", seq, sum)
 	ch <- sum
 }
-func main() { // 启动时间
-	start := time.Now() // 最大 CPU 核心数
+func main() {
+	// 启动时间
+	start := time.Now()
+	// 最大 CPU 核心数
 	cpus := runtime.NumCPU()
 	runtime.GOMAXPROCS(cpus)
 	chs := make([]chan int, cpus)
@@ -28,7 +30,10 @@ func main() { // 启动时间
 	for _, ch := range chs {
 		res := <-ch
 		sum += res
-	} // 结束时间
-	end := time.Now() // 打印耗时
+	}
+	// 结束时间
+	end := time.Now()
+	fmt.Println("CPU", cpus, "核并发计算1+2+3+...+10000000的结果")
+	// 打印耗时
 	fmt.Printf("最终运算结果: %d, 执行耗时(s): %f\n", sum, end.Sub(start).Seconds())
 }
