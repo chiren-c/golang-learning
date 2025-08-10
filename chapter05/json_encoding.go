@@ -66,7 +66,9 @@ func main() {
 		}
 	}
 	fmt.Println("----------2流式读写----------")
+	// 流式读写 JSON 数据
 	dec := json.NewDecoder(os.Stdin)
+	// 流式读取 JSON 数据并写入到标准输出
 	enc := json.NewEncoder(os.Stdout)
 	for {
 		var v map[string]interface{}
